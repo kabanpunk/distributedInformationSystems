@@ -1,0 +1,27 @@
+version: '3'
+services:
+  manager:
+    build: ./manager
+    ports:
+      - "8000:8000"
+    networks:
+      - crackhash_net
+
+  worker:
+    build: ./worker
+    ports:
+      - "8000"
+    networks:
+      - crackhash_net
+
+  mongodb:
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - crackhash_net
+      - 
+networks:
+  crackhash_net:
+    driver: bridge
